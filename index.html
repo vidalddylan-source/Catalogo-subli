@@ -110,11 +110,24 @@ setInterval(function() {
     </div>
 
  <div class="producto">
-        <img src="Invitacion.png" alt="Producto 1">
+        <img id= "img1" src="Invitacion.png" alt="Producto 1">
         <h3>Invitaciones Perzonalizadas</h3>
         <p class="precio">$35 MXN</p>
         <a href="https://wa.me/5560727650" class="boton">Comprar</a>
     </div>
+    <script>
+let imagenes = [
+    "Invitacion.png",
+    "Invitacion2.png"
+];
+
+let indice = 0;
+
+setInterval(function() {
+    indice = (indice + 1) % imagenes.length;
+    document.getElementById("img1").src = imagenes[indice];
+}, 3000);
+</script>
 
 <div class="producto">
         <img src="Harrypot.png" alt="Producto 1">
@@ -142,6 +155,7 @@ setInterval(function() {
 
 </body>
 </html>
+
 
 
 
