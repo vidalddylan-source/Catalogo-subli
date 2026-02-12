@@ -74,11 +74,26 @@
 <section class="catalogo">
 
     <div class="producto">
-        <img id="Taza2.png" src="Taza.png" alt="Producto 1">
+        <img id="img1" src="Taza.png" alt="Producto 1">
         <h3>Taza Blanca</h3>
         <p class="precio">$55 MXN</p>
         <a href="https://wa.me/5560727650" class="boton">Comprar</a>
     </div>
+
+    <script>
+let imagenes = [
+    "Taza.png",
+    "Taza2.png"
+];
+
+let indice = 0;
+
+setInterval(function() {
+    indice = (indice + 1) % imagenes.length;
+    document.getElementById("img1").src = imagenes[indice];
+}, 3000);
+</script>
+
 
     <div class="producto">
         <img src="Azul.png" alt="Producto 2">
@@ -127,6 +142,7 @@
 
 </body>
 </html>
+
 
 
 
