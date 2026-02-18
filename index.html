@@ -270,22 +270,25 @@
         const mensaje = document.getElementById('cot-mensaje').value;
         
         if(nombre === "" || producto === "") {
-            alert("Por favor, pon tu nombre y el producto que te interesa.");
+            alert("Por favor, ingresa tu nombre y selecciona un producto.");
             return;
         }
 
-        // Creamos el mensaje para WhatsApp
-        const texto = `Hola Sublimaciones V&D! 👋%0A` +
-                      `Me gustaría una cotización:%0A%0A` +
+        // Usamos %26 en lugar de & para que WhatsApp no corte el mensaje
+        const marca = "Sublimaciones V%26D"; 
+
+        // Construimos el mensaje con saltos de línea corregidos
+        const texto = `Hola ${marca}! 👋%0A%0A` +
+                      `*Nueva solicitud de cotización*%0A` +
+                      `----------------------------%0A` +
                       `*Nombre:* ${nombre}%0A` +
                       `*Producto:* ${producto}%0A` +
-                      `*Cantidad:* ${cantidad} pzas%0A` +
+                      `*Cantidad:* ${cantidad}%0A` +
                       `*Detalles:* ${mensaje}`;
 
-        // Abrimos WhatsApp con el mensaje listo
+        // Abrimos WhatsApp
         window.open(`https://wa.me/5560727650?text=${texto}`, '_blank');
     }
-
     // Mantén aquí tu función de carrusel anterior...
 </script>
 </div>
@@ -311,6 +314,7 @@
 
 </body>
 </html>
+
 
 
 
