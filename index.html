@@ -24,10 +24,8 @@
         header h1 { margin: 0; letter-spacing: 2px; font-size: 2rem; }
         header p { font-style: italic; color: #d4af37; margin-top: 10px; font-size: 0.9rem; }
 
-        /* DISEÑO RESPONSIVO DE CATÁLOGO */
         .catalogo {
             display: grid;
-            /* 2 columnas por defecto (celulares) */
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
             padding: 15px;
@@ -35,7 +33,6 @@
             margin: 0 auto;
         }
 
-        /* Ajuste para pantallas grandes (Tablets/PC) */
         @media (min-width: 768px) {
             .catalogo {
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -57,7 +54,7 @@
         }
 
         .contenedor-img {
-            height: 160px; /* Altura optimizada para 2 columnas en móvil */
+            height: 160px;
             width: 100%;
             display: flex;
             align-items: center;
@@ -77,13 +74,12 @@
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
-            transition: transform 0.5s;
+            transition: opacity 0.5s ease-in-out;
         }
 
         .producto h3 { font-size: 1rem; margin: 10px 0 5px 0; }
         .precio { font-weight: bold; color: #27ae60; font-size: 1.1rem; margin-bottom: 10px; }
 
-        /* Desplegable de Info */
         details {
             margin-top: auto;
             text-align: left;
@@ -111,7 +107,6 @@
             border-top: 1px solid #ddd;
         }
 
-        /* Sección de Tabla con Scroll Lateral */
         .seccion-pro { 
             padding: 40px 15px; 
             max-width: 900px; 
@@ -120,7 +115,7 @@
 
         .contenedor-tabla {
             width: 100%;
-            overflow-x: auto; /* Permite scroll si la tabla es grande */
+            overflow-x: auto;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
@@ -129,13 +124,12 @@
             width: 100%; 
             border-collapse: collapse; 
             background: white; 
-            min-width: 450px; /* Asegura que no se aplaste el texto */
+            min-width: 450px;
         }
 
         .tabla-mayoreo th { background: #111; color: #d4af37; padding: 12px; font-size: 0.9rem; }
         .tabla-mayoreo td { padding: 12px; text-align: center; border-bottom: 1px solid #eee; font-size: 0.9rem; }
 
-        /* Formulario */
         .formulario-contacto { 
             background: white; 
             padding: 25px; 
@@ -168,7 +162,6 @@
         }
         .boton-enviar:hover { background: #d4af37; color: #000; }
 
-        /* WhatsApp Flotante */
         .whatsapp-float {
             position: fixed;
             width: 60px;
@@ -193,7 +186,7 @@
 
 <section class="catalogo">
     <div class="producto">
-        <div class="contenedor-img"><img id="img-taza" src="Taza.png"></div>
+        <div class="contenedor-img"><img id="img-taza-blanca" src="Tazab.jpeg"></div>
         <h3>Taza Blanca</h3>
         <p class="precio">$55 MXN</p>
         <details>
@@ -207,13 +200,13 @@
     </div>
 
     <div class="producto">
-        <div class="contenedor-img"><img src="Azul.png"></div>
+        <div class="contenedor-img"><img id="img-taza-color" src="Azul.png"></div>
         <h3>Taza Color</h3>
         <p class="precio">$65 MXN</p>
         <details>
             <summary>Detalles</summary>
             <div class="info-contenido">
-                * Interior de color (Rosa, Rojo, Azul, entre otros.<br>
+                * Interior de color.<br>
                 * Cerámica alta calidad.<br>
                 * Acabado brillante.
             </div>
@@ -249,7 +242,7 @@
     </div>
 
     <div class="producto">
-        <div class="contenedor-img"><img src="Harrypot.png"></div>
+        <div class="contenedor-img"><img id="img-adornos" src="Harrypot.png"></div>
         <h3>Adornos</h3>
         <p class="precio">$15 MXN</p>
         <details>
@@ -257,7 +250,7 @@
             <div class="info-contenido">
                 * Papel Holográfico.<br>
                 * Brillo premium.<br>
-                * Colores segun los reflejos de luz.
+                * Efecto tornasol con luz.
             </div>
         </details>
     </div>
@@ -277,7 +270,7 @@
     </div>
 
     <div class="producto">
-        <div class="contenedor-img"><img src="Papel.png"></div>
+        <div class="contenedor-img"><img id="img-papel" src="Papel.png"></div>
         <h3>Papel Picado</h3>
         <p class="precio">$10 MXN</p>
         <details>
@@ -285,7 +278,7 @@
             <div class="info-contenido">
                 * Cartulina/Opalina.<br>
                 * Corte alta definición.<br>
-                * Mas resistentes.
+                * Más resistentes.
             </div>
         </details>
     </div>
@@ -352,7 +345,7 @@
                       `*Cotización Solicitada*\n` +
                       `Nombre: ${nombre}\n` +
                       `Producto: ${producto}\n` +
-                      `Cantidad: ${cantidad} pzas\n`+
+                      `Cantidad: ${cantidad} pzas\n` +
                       `Detalles: ${mensaje}`;
 
         window.open(`https://wa.me/5560727650?text=${encodeURIComponent(texto)}`, '_blank');
@@ -364,19 +357,36 @@
         if(elem) {
             setInterval(() => {
                 idx = (idx + 1) % fotos.length;
-                elem.src = fotos[idx];
-            }, 3000);
+                elem.style.opacity = 0; // Efecto de transición suave
+                setTimeout(() => {
+                    elem.src = fotos[idx];
+                    elem.style.opacity = 1;
+                }, 500);
+            }, 3500); // Cambio cada 3.5 segundos
         }
     }
 
     window.onload = function() {
-        carrusel("img-taza", ["Taza.png", "Taza2.png"]);
-        carrusel("img-inv", ["Invitacion.png", "Invitacion2.png"]);
+        // Taza Blanca (4 fotos)
+        carrusel("img-taza-blanca", ["Tazab.jpeg", "Tazab2.jpeg", "Tazab3.jpeg", "Tazab4.jpeg"]);
+        
+        // Taza Color (2 fotos)
+        carrusel("img-taza-color", ["Azul.png", "Tazaint.jpeg"]);
+        
+        // Invitaciones (2 fotos)
+        carrusel("img-inv", ["Invitacion.png", "Invita.jpeg"]);
+        
+        // Adornos (3 fotos)
+        carrusel("img-adornos", ["Harrypot.png", "Santaclos.jpeg", "Soldado.jpeg"]);
+        
+        // Papel Picado (3 fotos)
+        carrusel("img-papel", ["Papel.png", "Papelp.jpeg", "Papelp2.jpeg"]);
     };
 </script>
 
 </body>
 </html>
+
 
 
 
