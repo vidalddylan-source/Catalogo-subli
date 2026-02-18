@@ -262,42 +262,38 @@
 </div>
 
 <script>
+    <script>
     function enviarCotizacion() {
-        // Obtenemos los valores de los campos
+        // 1. Obtenemos los valores de los campos
         const nombre = document.getElementById('cot-nombre').value;
         const producto = document.getElementById('cot-producto').value;
         const cantidad = document.getElementById('cot-cantidad').value;
         const mensaje = document.getElementById('cot-mensaje').value;
         
+        // 2. Validación simple
         if(nombre === "" || producto === "") {
             alert("Por favor, ingresa tu nombre y selecciona un producto.");
             return;
         }
 
-        // Usamos %26 en lugar de & para que WhatsApp no corte el mensaje
-        const marca = "Sublimaciones V%26D"; 
+        // 3. Creamos el texto del mensaje
+        // Usamos \n para saltos de línea internos que luego convertiremos
+        const mensajeSucio = `Hola Sublimaciones V&D! 👋\n\n` +
+                             `*Nueva solicitud de cotización*\n` +
+                             `----------------------------\n` +
+                             `*Nombre:* ${nombre}\n` +
+                             `*Producto:* ${producto}\n` +
+                             `*Cantidad:* ${cantidad} pzas\n` +
+                             `*Detalles:* ${mensaje}`;
 
-        // Construimos el mensaje con saltos de línea corregidos
-        const texto = `Hola ${marca}! 👋%0A%0A` +
-                      `*Nueva solicitud de cotización*%0A` +
-                      `----------------------------%0A` +
-                      `*Nombre:* ${nombre}%0A` +
-                      `*Producto:* ${producto}%0A` +
-                      `*Cantidad:* ${cantidad}%0A` +
-                      `*Detalles:* ${mensaje}`;
+        // 4. LA MAGIA: encodeURIComponent limpia el mensaje de símbolos como & o acentos
+        const mensajeLimpio = encodeURIComponent(mensajeSucio);
 
-        // Abrimos WhatsApp
-        window.open(`https://wa.me/5560727650?text=${texto}`, '_blank');
+        // 5. Abrimos WhatsApp con el mensaje totalmente seguro
+        window.open(`https://wa.me/5560727650?text=${mensajeLimpio}`, '_blank');
     }
-    // Mantén aquí tu función de carrusel anterior...
-</script>
-</div>
 
-<a href="https://wa.me/5560727650" class="whatsapp-float" target="_blank">
-    <img src="WhatsApp.jpeg" alt="Icono WhatsApp">
-</a>
-
-<script>
+    // Tu función de carrusel sigue igual abajo
     function carrusel(id, fotos) {
         let idx = 0;
         const elem = document.getElementById(id);
@@ -311,9 +307,9 @@
     carrusel("img-taza", ["Taza.png", "Taza2.png"]);
     carrusel("img-inv", ["Invitacion.png", "Invitacion2.png"]);
 </script>
-
 </body>
 </html>
+
 
 
 
