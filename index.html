@@ -234,20 +234,60 @@
 
 <div style="background: #f1f1f1; padding: 50px 20px;">
     <div style="max-width: 600px; margin: 0 auto;">
-        <h2 style="text-align:center;">Solicita una Cotización</h2>
-        <form class="formulario-contacto">
-            <input type="text" placeholder="Tu Nombre" required>
-            <input type="email" placeholder="Correo Electrónico" required>
-            <select>
-                <option>Selecciona Producto</option>
-                <option>Tazas</option>
-                <option>Corte de Papel</option>
-                <option>Invitaciones</option>
+        <h2 style="text-align:center;">Solicita una Cotización Personalizada</h2>
+        <div class="formulario-contacto">
+            <input type="text" id="cot-nombre" placeholder="Tu Nombre" required>
+            <input type="email" id="cot-email" placeholder="Correo Electrónico (Opcional)">
+            
+            <select id="cot-producto">
+                <option value="">Selecciona el Producto</option>
+                <option value="Taza Blanca">Taza Blanca</option>
+                <option value="Taza Interior Color">Taza con Interior de Color</option>
+                <option value="Taza Mágica">Taza Mágica</option>
+                <option value="Invitaciones">Invitaciones Personalizadas</option>
+                <option value="Adornos">Adornos Personalizados</option>
+                <option value="Dulceros">Dulceros / Loncheras</option>
+                <option value="Papel Picado">Papel Picado Personalizado</option>
+                <option value="Paquete Completo">Paquete para Evento (Varios)</option>
             </select>
-            <textarea placeholder="Detalles de tu pedido..." rows="4"></textarea>
-            <button type="submit" class="boton" style="cursor:pointer; border:none; width: 100%;">ENVIAR SOLICITUD</button>
-        </form>
+            
+            <input type="number" id="cot-cantidad" placeholder="¿Cuántas piezas necesitas?">
+            <textarea id="cot-mensaje" placeholder="Cuéntanos los detalles de tu diseño (colores, personajes, fechas)..." rows="4"></textarea>
+            
+            <button type="button" onclick="enviarCotizacion()" class="boton" style="cursor:pointer; border:none; width: 100%;">
+                ENVIAR COTIZACIÓN POR WHATSAPP
+            </button>
+        </div>
     </div>
+</div>
+
+<script>
+    function enviarCotizacion() {
+        // Obtenemos los valores de los campos
+        const nombre = document.getElementById('cot-nombre').value;
+        const producto = document.getElementById('cot-producto').value;
+        const cantidad = document.getElementById('cot-cantidad').value;
+        const mensaje = document.getElementById('cot-mensaje').value;
+        
+        if(nombre === "" || producto === "") {
+            alert("Por favor, pon tu nombre y el producto que te interesa.");
+            return;
+        }
+
+        // Creamos el mensaje para WhatsApp
+        const texto = `Hola Sublimaciones V&D! 👋%0A` +
+                      `Me gustaría una cotización:%0A%0A` +
+                      `*Nombre:* ${nombre}%0A` +
+                      `*Producto:* ${producto}%0A` +
+                      `*Cantidad:* ${cantidad} pzas%0A` +
+                      `*Detalles:* ${mensaje}`;
+
+        // Abrimos WhatsApp con el mensaje listo
+        window.open(`https://wa.me/5560727650?text=${texto}`, '_blank');
+    }
+
+    // Mantén aquí tu función de carrusel anterior...
+</script>
 </div>
 
 <a href="https://wa.me/5560727650" class="whatsapp-float" target="_blank">
@@ -271,6 +311,7 @@
 
 </body>
 </html>
+
 
 
 
