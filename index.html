@@ -260,9 +260,7 @@
         </div>
     </div>
 </div>
-
-<script>
-    <script>
+   <script>
     function enviarCotizacion() {
         // 1. Obtenemos los valores de los campos
         const nombre = document.getElementById('cot-nombre').value;
@@ -277,7 +275,6 @@
         }
 
         // 3. Creamos el texto del mensaje
-        // Usamos \n para saltos de línea internos que luego convertiremos
         const mensajeSucio = `Hola Sublimaciones V&D! 👋\n\n` +
                              `*Nueva solicitud de cotización*\n` +
                              `----------------------------\n` +
@@ -286,14 +283,14 @@
                              `*Cantidad:* ${cantidad} pzas\n` +
                              `*Detalles:* ${mensaje}`;
 
-        // 4. LA MAGIA: encodeURIComponent limpia el mensaje de símbolos como & o acentos
+        // 4. Limpiamos el mensaje para que acepte símbolos como el &
         const mensajeLimpio = encodeURIComponent(mensajeSucio);
 
-        // 5. Abrimos WhatsApp con el mensaje totalmente seguro
+        // 5. Abrimos WhatsApp
         window.open(`https://wa.me/5560727650?text=${mensajeLimpio}`, '_blank');
     }
 
-    // Tu función de carrusel sigue igual abajo
+    // Función de carrusel
     function carrusel(id, fotos) {
         let idx = 0;
         const elem = document.getElementById(id);
@@ -304,11 +301,16 @@
             }, 3000);
         }
     }
-    carrusel("img-taza", ["Taza.png", "Taza2.png"]);
-    carrusel("img-inv", ["Invitacion.png", "Invitacion2.png"]);
+
+    // Activamos los carruseles al cargar la página
+    window.onload = function() {
+        carrusel("img-taza", ["Taza.png", "Taza2.png"]);
+        carrusel("img-inv", ["Invitacion.png", "Invitacion2.png"]);
+    };
 </script>
 </body>
 </html>
+
 
 
 
