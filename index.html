@@ -17,42 +17,60 @@
             background: linear-gradient(135deg, #000000, #1c1c1c);
             color: #f5f5f5;
             text-align: center;
-            padding: 60px 20px;
+            padding: 40px 20px;
             border-bottom: 4px solid #d4af37;
         }
 
-        header h1 { margin: 0; letter-spacing: 3px; font-size: 2.5rem; }
-        header p { font-style: italic; color: #d4af37; margin-top: 10px; }
+        header h1 { margin: 0; letter-spacing: 2px; font-size: 2rem; }
+        header p { font-style: italic; color: #d4af37; margin-top: 10px; font-size: 0.9rem; }
 
+        /* DISEÑO RESPONSIVO DE CATÁLOGO */
         .catalogo {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            padding: 40px 20px;
+            /* 2 columnas por defecto (celulares) */
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 15px;
             max-width: 1300px;
             margin: 0 auto;
         }
 
+        /* Ajuste para pantallas grandes (Tablets/PC) */
+        @media (min-width: 768px) {
+            .catalogo {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 30px;
+                padding: 40px 20px;
+            }
+            header h1 { font-size: 2.5rem; }
+            header p { font-size: 1.1rem; }
+        }
+
         .producto {
             background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             text-align: center;
             display: flex;
             flex-direction: column;
         }
 
         .contenedor-img {
-            height: 350px;
+            height: 160px; /* Altura optimizada para 2 columnas en móvil */
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            border-radius: 10px;
-            margin-bottom: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
             background-color: #fdfdfd;
+        }
+
+        @media (min-width: 768px) {
+            .contenedor-img { height: 300px; }
+            .producto { padding: 20px; }
         }
 
         .producto img {
@@ -62,44 +80,80 @@
             transition: transform 0.5s;
         }
 
-        .precio { font-weight: bold; color: #27ae60; font-size: 22px; margin: 10px 0; }
+        .producto h3 { font-size: 1rem; margin: 10px 0 5px 0; }
+        .precio { font-weight: bold; color: #27ae60; font-size: 1.1rem; margin-bottom: 10px; }
 
-        /* Estilos del Desplegable de Info */
+        /* Desplegable de Info */
         details {
-            margin-top: 10px;
+            margin-top: auto;
             text-align: left;
             background: #f1f1f1;
-            border-radius: 8px;
+            border-radius: 6px;
         }
 
         summary {
-            padding: 12px;
+            padding: 8px;
             cursor: pointer;
             font-weight: bold;
+            font-size: 0.85rem;
             list-style: none;
             text-align: center;
             transition: 0.3s;
-            border-radius: 8px;
         }
 
         summary:hover { background: #d4af37; color: #000; }
 
         .info-contenido {
-            padding: 15px;
-            font-size: 0.9rem;
-            line-height: 1.5;
+            padding: 10px;
+            font-size: 0.8rem;
+            line-height: 1.4;
             color: #444;
             border-top: 1px solid #ddd;
         }
 
-        /* Secciones Pro */
-        .seccion-pro { padding: 50px 20px; max-width: 900px; margin: 0 auto; }
-        .tabla-mayoreo { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .tabla-mayoreo th { background: #111; color: #d4af37; padding: 15px; }
-        .tabla-mayoreo td { padding: 15px; text-align: center; border-bottom: 1px solid #eee; }
+        /* Sección de Tabla con Scroll Lateral */
+        .seccion-pro { 
+            padding: 40px 15px; 
+            max-width: 900px; 
+            margin: 0 auto; 
+        }
 
-        .formulario-contacto { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); display: flex; flex-direction: column; gap: 15px; }
-        .formulario-contacto input, .formulario-contacto select, .formulario-contacto textarea { padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; }
+        .contenedor-tabla {
+            width: 100%;
+            overflow-x: auto; /* Permite scroll si la tabla es grande */
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .tabla-mayoreo { 
+            width: 100%; 
+            border-collapse: collapse; 
+            background: white; 
+            min-width: 450px; /* Asegura que no se aplaste el texto */
+        }
+
+        .tabla-mayoreo th { background: #111; color: #d4af37; padding: 12px; font-size: 0.9rem; }
+        .tabla-mayoreo td { padding: 12px; text-align: center; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+
+        /* Formulario */
+        .formulario-contacto { 
+            background: white; 
+            padding: 25px; 
+            border-radius: 15px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+        }
+        
+        .formulario-contacto input, .formulario-contacto select, .formulario-contacto textarea { 
+            padding: 12px; 
+            border: 1px solid #ccc; 
+            border-radius: 8px; 
+            font-size: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
 
         .boton-enviar {
             background: #111;
@@ -110,16 +164,17 @@
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
+            font-size: 1rem;
         }
         .boton-enviar:hover { background: #d4af37; color: #000; }
 
         /* WhatsApp Flotante */
         .whatsapp-float {
             position: fixed;
-            width: 70px;
-            height: 70px;
-            bottom: 30px;
-            right: 30px;
+            width: 60px;
+            height: 60px;
+            bottom: 20px;
+            right: 20px;
             border-radius: 50%;
             box-shadow: 2px 5px 15px rgba(0,0,0,0.3);
             z-index: 1000;
@@ -142,24 +197,24 @@
         <h3>Taza Blanca</h3>
         <p class="precio">$55 MXN</p>
         <details>
-            <summary>Ver Detalles</summary>
+            <summary>Detalles</summary>
             <div class="info-contenido">
-                * Capacidad: 11 oz (325ml).<br>
-                * Material: Cerámica premium.<br>
-                * Resistente a microondas y lavavajillas.
+                * 11 oz (325ml).<br>
+                * Cerámica premium.<br>
+                * Microondas/Lavavajillas.
             </div>
         </details>
     </div>
 
     <div class="producto">
         <div class="contenedor-img"><img src="Azul.png"></div>
-        <h3>Taza con Interior de Color</h3>
+        <h3>Taza Color</h3>
         <p class="precio">$65 MXN</p>
         <details>
-            <summary>Ver Detalles</summary>
+            <summary>Detalles</summary>
             <div class="info-contenido">
-                * Varios colores disponibles.<br>
-                * Cerámica de alta calidad.<br>
+                * Interior/Asa de color.<br>
+                * Cerámica alta calidad.<br>
                 * Acabado brillante.
             </div>
         </details>
@@ -170,111 +225,108 @@
         <h3>Taza Mágica</h3>
         <p class="precio">$130 MXN</p>
         <details>
-            <summary>Ver Detalles</summary>
+            <summary>Detalles</summary>
             <div class="info-contenido">
-                * Cambia de color con agua caliente.<br>
-                * Acabado negro mate elegante.<br>
-                * Ideal para regalos sorpresa.
+                * Revela diseño con calor.<br>
+                * Negro mate elegante.<br>
+                * Regalo sorpresa.
             </div>
         </details>
     </div>
 
     <div class="producto">
         <div class="contenedor-img"><img id="img-inv" src="Invitacion.png"></div>
-        <h3>Invitaciones Personalizadas</h3>
+        <h3>Invitaciones</h3>
         <p class="precio">$35 MXN</p>
         <details>
-            <summary>Ver Detalles</summary>
+            <summary>Detalles</summary>
             <div class="info-contenido">
-                * Material: Cartulina u Opalina de alta calidad.<br>
-                * Corte de precisión con formas únicas.<br>
-                * Diseño temático incluido.
+                * Cartulina/Opalina.<br>
+                * Corte de precisión.<br>
+                * Diseño temático.
             </div>
         </details>
     </div>
 
     <div class="producto">
         <div class="contenedor-img"><img src="Harrypot.png"></div>
-        <h3>Adornos Personalizados</h3>
+        <h3>Adornos</h3>
         <p class="precio">$15 MXN</p>
         <details>
-            <summary>Ver Detalles</summary>
+            <summary>Detalles</summary>
             <div class="info-contenido">
-                * Material: Papel Holográfico Premium.<br>
-                * Brillo de arcoíris según la luz.<br>
-                * Perfectos para Cake Toppers.
+                * Papel Holográfico.<br>
+                * Brillo premium.<br>
+                * Ideal Cake Toppers.
             </div>
         </details>
     </div>
 
     <div class="producto">
         <div class="contenedor-img"><img src="Lonchera.png"></div>
-        <h3>Dulceros Personalizados</h3>
+        <h3>Dulceros</h3>
         <p class="precio">$15 MXN</p>
         <details>
-            <summary>Ver Detalles</summary>
+            <summary>Detalles</summary>
             <div class="info-contenido">
-                * Diseño tipo lonchera o caja.<br>
-                * Personalización completa con nombre/temática.<br>
-                * Ideal para fiestas infantiles.
+                * Diseño tipo lonchera.<br>
+                * 100% Personalizado.<br>
+                * Estructura firme.
             </div>
         </details>
     </div>
 
     <div class="producto">
         <div class="contenedor-img"><img src="Papel.png"></div>
-        <h3>Papel Picado Personalizado</h3>
+        <h3>Papel Picado</h3>
         <p class="precio">$10 MXN</p>
         <details>
-            <summary>Ver Detalles</summary>
+            <summary>Detalles</summary>
             <div class="info-contenido">
-                * Material: Cartulina u Opalina resistente.<br>
-                * Corte computarizado de alta definición.<br>
-                * Duradero y estético.
+                * Cartulina/Opalina.<br>
+                * Corte alta definición.<br>
+                * Muy resistente.
             </div>
         </details>
     </div>
 </section>
 
 <div class="seccion-pro">
-    <h2 style="text-align:center;">Precios Especiales de Mayoreo</h2>
-    <table class="tabla-mayoreo">
-        <thead>
-            <tr><th>Producto</th><th>1 - 10 pzas</th><th>10+ pzas</th></tr>
-        </thead>
-        <tbody>
-            <tr><td>Taza Blanca</td><td>$55 MXN</td><td>$48 MXN</td></tr>
-            <tr><td>Taza Interior Color</td><td>$65 MXN</td><td>$58 MXN</td></tr>
-            <tr><td>Taza Mágica</td><td>$130 MXN</td><td>$120 MXN</td></tr>
-            <tr><td>Invitaciones (Opalina)</td><td>$35 MXN</td><td>$30 MXN</td></tr>
-            <tr><td>Adornos (Holográfico)</td><td>$15 MXN</td><td>$10 MXN</td></tr>
-            <tr><td>Dulceros / Loncheras</td><td>$15 MXN</td><td>$10 MXN</td></tr>
-            <tr><td>Papel Picado (Corte)</td><td>$10 MXN</td><td>$8 MXN</td></tr>
-        </tbody>
-    </table>
+    <h2 style="text-align:center;">Precios de Mayoreo</h2>
+    <div class="contenedor-tabla">
+        <table class="tabla-mayoreo">
+            <thead>
+                <tr><th>Producto</th><th>1 - 10 pzas</th><th>10+ pzas</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Taza Blanca</td><td>$55</td><td>$48</td></tr>
+                <tr><td>Taza Color</td><td>$65</td><td>$58</td></tr>
+                <tr><td>Taza Mágica</td><td>$130</td><td>$120</td></tr>
+                <tr><td>Invitaciones</td><td>$35</td><td>$30</td></tr>
+                <tr><td>Adornos / Dulceros</td><td>$15</td><td>$10</td></tr>
+                <tr><td>Papel Picado</td><td>$10</td><td>$8</td></tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
-<div style="background: #f1f1f1; padding: 50px 20px;">
-    <div style="max-width: 600px; margin: 0 auto;">
-        <h2 style="text-align:center;">Solicita tu Cotización</h2>
+<div style="background: #f1f1f1; padding: 40px 15px;">
+    <div style="max-width: 500px; margin: 0 auto;">
+        <h2 style="text-align:center;">Solicita Cotización</h2>
         <div class="formulario-contacto">
             <input type="text" id="cot-nombre" placeholder="Tu Nombre" required>
-            
             <select id="cot-producto">
-                <option value="">Selecciona el Producto</option>
+                <option value="">Selecciona Producto</option>
                 <option value="Taza Blanca">Taza Blanca</option>
-                <option value="Taza Interior Color">Taza con Interior de Color</option>
+                <option value="Taza Color">Taza Interior Color</option>
                 <option value="Taza Mágica">Taza Mágica</option>
-                <option value="Invitaciones">Invitaciones Personalizadas</option>
-                <option value="Adornos Holográficos">Adornos Personalizados</option>
-                <option value="Dulceros">Dulceros / Loncheras</option>
-                <option value="Papel Picado">Papel Picado Personalizado</option>
-                <option value="Paquete para Evento">Paquete para Evento (Varios)</option>
+                <option value="Invitaciones">Invitaciones</option>
+                <option value="Adornos/Dulceros">Adornos o Dulceros</option>
+                <option value="Papel Picado">Papel Picado</option>
+                <option value="Paquete Completo">Paquete Especial</option>
             </select>
-            
-            <input type="number" id="cot-cantidad" placeholder="¿Cuántas piezas necesitas?">
-            <textarea id="cot-mensaje" placeholder="Detalles adicionales (temática, colores, fecha del evento)..." rows="4"></textarea>
-            
+            <input type="number" id="cot-cantidad" placeholder="Cantidad">
+            <textarea id="cot-mensaje" placeholder="Detalles del diseño..." rows="3"></textarea>
             <button type="button" onclick="enviarCotizacion()" class="boton-enviar">ENVIAR A WHATSAPP</button>
         </div>
     </div>
@@ -292,16 +344,15 @@
         const mensaje = document.getElementById('cot-mensaje').value;
         
         if(!nombre || !producto) {
-            alert("Por favor completa tu nombre y el producto que te interesa.");
+            alert("Por favor completa nombre y producto.");
             return;
         }
 
         const texto = `Hola Sublimaciones V&D! 👋\n\n` +
-                      `*Nueva Cotización Web*\n` +
-                      `----------------------------\n` +
+                      `*Cotización Solicitada*\n` +
                       `Nombre: ${nombre}\n` +
                       `Producto: ${producto}\n` +
-                      `Cantidad: ${cantidad} pzas\n` +
+                      `Cantidad: ${cantidad}\n` +
                       `Detalles: ${mensaje}`;
 
         window.open(`https://wa.me/5560727650?text=${encodeURIComponent(texto)}`, '_blank');
@@ -326,6 +377,7 @@
 
 </body>
 </html>
+
 
 
 
