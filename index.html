@@ -26,7 +26,7 @@
 
         .catalogo {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Columnas un poco más anchas */
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
             padding: 40px 20px;
             max-width: 1300px;
@@ -41,12 +41,10 @@
             text-align: center;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
 
-        /* Ajuste para imágenes más grandes */
         .contenedor-img {
-            height: 350px; /* Aumentamos de 250px a 350px */
+            height: 350px;
             width: 100%;
             display: flex;
             align-items: center;
@@ -60,39 +58,62 @@
         .producto img {
             max-width: 100%;
             max-height: 100%;
-            object-fit: contain; /* 'contain' para que la imagen se vea completa sin cortes */
+            object-fit: contain;
             transition: transform 0.5s;
         }
 
-        .producto:hover img {
-            transform: scale(1.05); /* Zoom suave al pasar el mouse */
-        }
-
         .precio { font-weight: bold; color: #27ae60; font-size: 22px; margin: 10px 0; }
-        
-        .boton {
-            display: inline-block;
-            padding: 14px 25px;
-            background: #111;
-            color: #d4af37;
-            text-decoration: none;
+
+        /* Estilos del Desplegable de Info */
+        details {
+            margin-top: 10px;
+            text-align: left;
+            background: #f1f1f1;
             border-radius: 8px;
-            font-weight: bold;
-            transition: 0.3s;
         }
 
-        .boton:hover { background: #d4af37; color: #111; }
+        summary {
+            padding: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            text-align: center;
+            transition: 0.3s;
+            border-radius: 8px;
+        }
 
-        /* Estilos Pro */
+        summary:hover { background: #d4af37; color: #000; }
+
+        .info-contenido {
+            padding: 15px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #444;
+            border-top: 1px solid #ddd;
+        }
+
+        /* Secciones Pro */
         .seccion-pro { padding: 50px 20px; max-width: 900px; margin: 0 auto; }
         .tabla-mayoreo { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .tabla-mayoreo th { background: #111; color: #d4af37; padding: 15px; }
         .tabla-mayoreo td { padding: 15px; text-align: center; border-bottom: 1px solid #eee; }
 
         .formulario-contacto { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); display: flex; flex-direction: column; gap: 15px; }
-        .formulario-contacto input, .formulario-contacto select, .formulario-contacto textarea { padding: 12px; border: 1px solid #ccc; border-radius: 8px; }
+        .formulario-contacto input, .formulario-contacto select, .formulario-contacto textarea { padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; }
 
-        /* WhatsApp */
+        .boton-enviar {
+            background: #111;
+            color: #d4af37;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .boton-enviar:hover { background: #d4af37; color: #000; }
+
+        /* WhatsApp Flotante */
         .whatsapp-float {
             position: fixed;
             width: 70px;
@@ -117,180 +138,166 @@
 
 <section class="catalogo">
     <div class="producto">
-        <div class="contenedor-img">
-            <img id="img-taza" src="Taza.png" alt="Taza Blanca">
-        </div>
+        <div class="contenedor-img"><img id="img-taza" src="Taza.png"></div>
         <h3>Taza Blanca</h3>
         <p class="precio">$55 MXN</p>
-        <a href="https://wa.me/5560727650" class="boton">Comprar</a>
+        <details>
+            <summary>Ver Detalles</summary>
+            <div class="info-contenido">
+                * Capacidad: 11 oz (325ml).<br>
+                * Material: Cerámica premium.<br>
+                * Resistente a microondas y lavavajillas.
+            </div>
+        </details>
     </div>
 
     <div class="producto">
-        <div class="contenedor-img">
-            <img src="Azul.png" alt="Taza Color">
-        </div>
+        <div class="contenedor-img"><img src="Azul.png"></div>
         <h3>Taza con Interior de Color</h3>
         <p class="precio">$65 MXN</p>
-        <a href="https://wa.me/5560727650" class="boton">Comprar</a>
+        <details>
+            <summary>Ver Detalles</summary>
+            <div class="info-contenido">
+                * Varios colores disponibles (Azul, Rojo, Rosa, etc).<br>
+                * Cerámica de alta calidad.<br>
+                * El diseño combina con el color interno.
+            </div>
+        </details>
     </div>
 
     <div class="producto">
-        <div class="contenedor-img">
-            <img src="Magica.png" alt="Taza Mágica">
-        </div>
+        <div class="contenedor-img"><img src="Magica.png"></div>
         <h3>Taza Mágica</h3>
         <p class="precio">$130 MXN</p>
-        <a href="https://wa.me/5560727650" class="boton">Comprar</a>
+        <details>
+            <summary>Ver Detalles</summary>
+            <div class="info-contenido">
+                * Acabado negro mate que revela el diseño con calor.<br>
+                * Sorpresa ideal para regalos.<br>
+                * Lavar a mano preferentemente.
+            </div>
+        </details>
     </div>
 
     <div class="producto">
-        <div class="contenedor-img">
-            <img id="img-inv" src="Invitacion.png" alt="Invitaciones">
-        </div>
+        <div class="contenedor-img"><img id="img-inv" src="Invitacion.png"></div>
         <h3>Invitaciones Personalizadas</h3>
         <p class="precio">$35 MXN</p>
-        <a href="https://wa.me/5560727650" class="boton">Comprar</a>
+        <details>
+            <summary>Ver Detalles</summary>
+            <div class="info-contenido">
+                * Material: Cartulina u Opalina de alto gramaje.<br>
+                * Corte de precisión computarizado.<br>
+                * Diseño 100% temático.
+            </div>
+        </details>
     </div>
 
     <div class="producto">
-        <div class="contenedor-img">
-            <img src="Harrypot.png" alt="Adornos">
-        </div>
+        <div class="contenedor-img"><img src="Harrypot.png"></div>
         <h3>Adornos Personalizados</h3>
         <p class="precio">$15 MXN</p>
-        <a href="https://wa.me/5560727650" class="boton">Comprar</a>
+        <details>
+            <summary>Ver Detalles</summary>
+            <div class="info-contenido">
+                * Material: Papel Holográfico Premium.<br>
+                * Brillo único que cambia con la luz.<br>
+                * Ideal para Cake Toppers o decoración.
+            </div>
+        </details>
     </div>
 
     <div class="producto">
-        <div class="contenedor-img">
-            <img src="Lonchera.png" alt="Dulceros">
-        </div>
+        <div class="contenedor-img"><img src="Lonchera.png"></div>
         <h3>Dulceros Personalizados</h3>
         <p class="precio">$15 MXN</p>
-        <a href="https://wa.me/5560727650" class="boton">Comprar</a>
+        <details>
+            <summary>Ver Detalles</summary>
+            <div class="info-contenido">
+                * Diseño tipo lonchera o cajita.<br>
+                * Totalmente personalizados.<br>
+                * Estructura firme para dulces variados.
+            </div>
+        </details>
     </div>
 
     <div class="producto">
-        <div class="contenedor-img">
-            <img src="Papel.png" alt="Papel Picado">
-        </div>
+        <div class="contenedor-img"><img src="Papel.png"></div>
         <h3>Papel Picado Personalizado</h3>
         <p class="precio">$10 MXN</p>
-        <a href="https://wa.me/5560727650" class="boton">Comprar</a>
+        <details>
+            <summary>Ver Detalles</summary>
+            <div class="info-contenido">
+                * Material: Cartulina u Opalina resistente.<br>
+                * Mucho más duradero que el papel china.<br>
+                * Corte detallado de logos o nombres.
+            </div>
+        </details>
     </div>
 </section>
 
 <div class="seccion-pro">
-    <h2 style="text-align:center; border-bottom: 2px solid #d4af37; padding-bottom: 10px;">Precios Especiales de Mayoreo</h2>
-    <p style="text-align: center; color: #666; margin-bottom: 20px;">Impulsa tu evento o negocio con nuestros precios por volumen.</p>
-    
+    <h2 style="text-align:center;">Precios Especiales de Mayoreo</h2>
     <table class="tabla-mayoreo">
         <thead>
-            <tr>
-                <th>Producto</th>
-                <th>1 - 10 pzas</th>
-                <th>10+ pzas</th>
-            </tr>
+            <tr><th>Producto</th><th>12-50 pzas</th><th>50+ pzas</th></tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Taza Blanca</td>
-                <td>$55 MXN</td>
-                <td>$48 MXN</td>
-            </tr>
-            <tr>
-                <td>Taza Interior Color</td>
-                <td>$65 MXN</td>
-                <td>$58 MXN</td>
-            </tr>
-            <tr>
-                <td>Taza Mágica</td>
-                <td>$130 MXN</td>
-                <td>$115 MXN</td>
-            </tr>
-            <tr>
-                <td>Invitaciones Personalizadas</td>
-                <td>$35 MXN</td>
-                <td>$32 MXN</td>
-            </tr>
-            <tr>
-                <td>Dulceros / Loncheras</td>
-                <td>$15 MXN</td>
-                <td>$12 MXN</td>
-            </tr>
-            <tr>
-                <td>Adornos Personalizados</td>
-                <td>$15 MXN</td>
-                <td>$10 MXN</td>
-            </tr>
-            <tr>
-                <td>Papel Picado (pieza)</td>
-                <td>$10 MXN</td>
-                <td>$8 MXN</td>
-            </tr>
+            <tr><td>Taza Blanca</td><td>$45</td><td>$38</td></tr>
+            <tr><td>Taza Mágica</td><td>$115</td><td>$100</td></tr>
+            <tr><td>Invitaciones</td><td>$28</td><td>$22</td></tr>
+            <tr><td>Dulceros / Adornos</td><td>$12</td><td>$9</td></tr>
+            <tr><td>Papel Picado (pza)</td><td>$8</td><td>$6</td></tr>
         </tbody>
     </table>
 </div>
 
 <div style="background: #f1f1f1; padding: 50px 20px;">
     <div style="max-width: 600px; margin: 0 auto;">
-        <h2 style="text-align:center;">Solicita una Cotización Personalizada</h2>
+        <h2 style="text-align:center;">Solicita tu Cotización</h2>
         <div class="formulario-contacto">
             <input type="text" id="cot-nombre" placeholder="Tu Nombre" required>
-            <input type="email" id="cot-email" placeholder="Correo Electrónico (Opcional)">
-            
             <select id="cot-producto">
                 <option value="">Selecciona el Producto</option>
                 <option value="Taza Blanca">Taza Blanca</option>
-                <option value="Taza Interior Color">Taza con Interior de Color</option>
                 <option value="Taza Mágica">Taza Mágica</option>
-                <option value="Invitaciones">Invitaciones Personalizadas</option>
-                <option value="Adornos">Adornos Personalizados</option>
-                <option value="Dulceros">Dulceros / Loncheras</option>
-                <option value="Papel Picado">Papel Picado Personalizado</option>
-                <option value="Paquete Completo">Paquete para Evento (Varios)</option>
+                <option value="Invitaciones">Invitaciones</option>
+                <option value="Adornos/Dulceros">Adornos o Dulceros</option>
+                <option value="Papel Picado">Papel Picado</option>
             </select>
-            
-            <input type="number" id="cot-cantidad" placeholder="¿Cuántas piezas necesitas?">
-            <textarea id="cot-mensaje" placeholder="Cuéntanos los detalles de tu diseño (colores, personajes, fechas)..." rows="4"></textarea>
-            
-            <button type="button" onclick="enviarCotizacion()" class="boton" style="cursor:pointer; border:none; width: 100%;">
-                ENVIAR COTIZACIÓN POR WHATSAPP
-            </button>
+            <input type="number" id="cot-cantidad" placeholder="Cantidad aproximada">
+            <textarea id="cot-mensaje" placeholder="Detalles adicionales (temática, colores)..." rows="4"></textarea>
+            <button type="button" onclick="enviarCotizacion()" class="boton-enviar">ENVIAR A WHATSAPP</button>
         </div>
     </div>
 </div>
-   <script>
+
+<a href="https://wa.me/5560727650" class="whatsapp-float" target="_blank">
+    <img src="WhatsApp.jpeg" alt="WhatsApp">
+</a>
+
+<script>
     function enviarCotizacion() {
-        // 1. Obtenemos los valores de los campos
         const nombre = document.getElementById('cot-nombre').value;
         const producto = document.getElementById('cot-producto').value;
         const cantidad = document.getElementById('cot-cantidad').value;
         const mensaje = document.getElementById('cot-mensaje').value;
         
-        // 2. Validación simple
-        if(nombre === "" || producto === "") {
-            alert("Por favor, ingresa tu nombre y selecciona un producto.");
+        if(!nombre || !producto) {
+            alert("Por favor llena tu nombre y el producto.");
             return;
         }
 
-        // 3. Creamos el texto del mensaje
-        const mensajeSucio = `Hola Sublimaciones V&D! 👋\n\n` +
-                             `*Nueva solicitud de cotización*\n` +
-                             `----------------------------\n` +
-                             `*Nombre:* ${nombre}\n` +
-                             `*Producto:* ${producto}\n` +
-                             `*Cantidad:* ${cantidad} pzas\n` +
-                             `*Detalles:* ${mensaje}`;
+        const texto = `Hola Sublimaciones V&D! 👋\n\n` +
+                      `*Cotización Solicitada*\n` +
+                      `Nombre: ${nombre}\n` +
+                      `Producto: ${producto}\n` +
+                      `Cantidad: ${cantidad}\n` +
+                      `Detalles: ${mensaje}`;
 
-        // 4. Limpiamos el mensaje para que acepte símbolos como el &
-        const mensajeLimpio = encodeURIComponent(mensajeSucio);
-
-        // 5. Abrimos WhatsApp
-        window.open(`https://wa.me/5560727650?text=${mensajeLimpio}`, '_blank');
+        window.open(`https://wa.me/5560727650?text=${encodeURIComponent(texto)}`, '_blank');
     }
 
-    // Función de carrusel
     function carrusel(id, fotos) {
         let idx = 0;
         const elem = document.getElementById(id);
@@ -302,12 +309,12 @@
         }
     }
 
-    // Activamos los carruseles al cargar la página
     window.onload = function() {
         carrusel("img-taza", ["Taza.png", "Taza2.png"]);
         carrusel("img-inv", ["Invitacion.png", "Invitacion2.png"]);
     };
 </script>
+
 </body>
 </html>
 
